@@ -41,7 +41,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/Gelhaus-Solutions/laya"
 Repository = "https://github.com/Gelhaus-Solutions/laya"
-Issues = "https://github.com/Gelhaus-Solutions/laya/issues"
+# No Issues URL: issues are disabled on this fork, so the link would 404.
 Releases = "https://github.com/Gelhaus-Solutions/laya/releases"
 Upstream = "https://github.com/NandhaKishorM/laya"
 # The model weights stay upstream's; this fork ships code, not checkpoints.
