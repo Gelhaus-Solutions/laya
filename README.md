@@ -1,27 +1,33 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-lockup-dark.png" />
-    <img src="https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/logo-lockup.png" alt="Laya" width="330" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Gelhaus-Solutions/laya/main/assets/logo-lockup-dark.png" />
+    <img src="https://raw.githubusercontent.com/Gelhaus-Solutions/laya/main/assets/logo-lockup.png" alt="Laya" width="330" />
   </picture>
 </p>
+
+> **This is a fork.** The upstream project is
+> [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya) by Convai Innovations, and the
+> model checkpoints remain theirs on the Hugging Face Hub. This fork is maintained by
+> Gelhaus Solutions and distributes its own builds through
+> [GitHub Releases](https://github.com/Gelhaus-Solutions/laya/releases) rather than PyPI.
+> See [Relationship to upstream](#relationship-to-upstream).
 
 **Multilingual, non-autoregressive System 1 decision engine.** Typed decisions over 100+ languages in a single forward pass — 33 ms — trained with reinforcement learning against strictly proper scoring rules (RLCD), with a router that picks the right checkpoint per request.
 
 <div align="center">
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/15d4Yv__KHeHjshVb-6PRTfqVllxih2S3?usp=sharing)
-[![PyPI version](https://img.shields.io/pypi/v/laya.svg)](https://pypi.org/project/laya/)
+[![Release](https://img.shields.io/github/v/release/Gelhaus-Solutions/laya?label=release&sort=semver)](https://github.com/Gelhaus-Solutions/laya/releases)
 [![Hugging Face Model](https://img.shields.io/badge/%F0%9F%A4%97%20Model-convaiinnovations%2Flaya-blue)](https://huggingface.co/convaiinnovations/laya)
 [![Multilingual](https://img.shields.io/badge/%F0%9F%A4%97%20Model-laya--multilingual-blue)](https://huggingface.co/convaiinnovations/laya-multilingual)
 [![Hugging Face Space](https://img.shields.io/badge/%F0%9F%A4%97%20Space-laya--demo-orange)](https://huggingface.co/spaces/convaiinnovations/laya-demo)
 [![Dev.to Article](https://img.shields.io/badge/dev.to-Read%20Article-0A0A0A?logo=devdotto&logoColor=white)](https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me)
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-nandakishorm-FFDD00?logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/nandakishorm)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
 </div>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/laya_vs_jev_full.png" alt="Laya versus TypeSafe Jev: accuracy on shared public datasets, every application workflow, all 51 languages, speed, calibration, and the cost of not preloading" width="100%" />
+  <img src="https://raw.githubusercontent.com/Gelhaus-Solutions/laya/main/assets/laya_vs_jev_full.png" alt="Laya versus TypeSafe Jev: accuracy on shared public datasets, every application workflow, all 51 languages, speed, calibration, and the cost of not preloading" width="100%" />
 </p>
 
 Laya evaluates typed questions (`choice`, `score`, `noul`) over any state (text, email, ticket or JSON document) in **a single forward pass** — 33 ms for one question, 7.2 ms/question batched, measured on a T4. No text generation, so nothing to parse and nothing to hallucinate.
@@ -38,8 +44,34 @@ Three checkpoints, and a `Router` that picks between them per request:
 
 ## Installation
 
+This fork is installed from GitHub, not from PyPI -- `pip install laya` would fetch
+upstream's package instead.
+
 ```bash
-pip install laya
+# latest main
+pip install "laya @ git+https://github.com/Gelhaus-Solutions/laya@main"
+
+# a pinned release (recommended)
+pip install "laya @ git+https://github.com/Gelhaus-Solutions/laya@v0.3.4"
+```
+
+Every tagged release also carries a prebuilt wheel and sdist, which install without a
+git client or a build step:
+
+```bash
+pip install https://github.com/Gelhaus-Solutions/laya/releases/download/v0.3.4/laya-0.3.4-py3-none-any.whl
+```
+
+In a `requirements.txt` or `pyproject.toml`, pin the ref rather than tracking `main`:
+
+```
+laya @ git+https://github.com/Gelhaus-Solutions/laya@v0.3.4
+```
+
+The import name is unchanged, so existing code needs no edits:
+
+```python
+import laya
 ```
 
 ---
@@ -246,12 +278,12 @@ triage = agent.predict({"message": "My payment failed twice"}, laya.triage_quest
 **Full report: [`BENCHMARKS.md`](BENCHMARKS.md)** — every run consolidated, languages and themes, with per-language detail for all 51 languages.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/NandhaKishorM/laya/main/assets/laya_benchmark.png" alt="Per-language accuracy for both checkpoints across 51 languages" width="100%" />
+  <img src="https://raw.githubusercontent.com/Gelhaus-Solutions/laya/main/assets/laya_benchmark.png" alt="Per-language accuracy for both checkpoints across 51 languages" width="100%" />
 </p>
 
 All Laya numbers below are measured. Every model answered byte-identical questions
 (fixed seed) in the same run. Reproduce with
-[`notebooks/laya_benchmark_colab.ipynb`](https://github.com/NandhaKishorM/laya) on a T4.
+[`research/scripts/laya_benchmark_colab.ipynb`](research/scripts/laya_benchmark_colab.ipynb) on a T4.
 
 ### Speed (Tesla T4, measured)
 
@@ -378,6 +410,8 @@ temperatures at all, so fit them before relying on its probabilities.
 * **Hugging Face Model:** [convaiinnovations/laya](https://huggingface.co/convaiinnovations/laya)
 * **Interactive Web Demo:** [convaiinnovations/laya-demo](https://huggingface.co/spaces/convaiinnovations/laya-demo)
 * **Engineering Writeup:** [Read the full story on Dev.to](https://dev.to/nandakishor_m_6cc0adfde9f/i-built-non-autoregressive-decision-models-a-year-ago-then-a-frontier-lab-called-it-a-18me)
+* **Upstream repository:** [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya)
+* **This fork:** [Gelhaus-Solutions/laya](https://github.com/Gelhaus-Solutions/laya)
 
 ---
 
@@ -401,7 +435,8 @@ Runtime on 2xT4 is roughly 4-5 hours for 4 epochs over ~30k questions.
 
 ## Support the Project
 
-If Laya helps your research or products, consider supporting independent research:
+Laya is upstream's work. If it helps your research or products, support the original
+author's independent research:
 
 <p align="left">
   <a href="https://www.buymeacoffee.com/nandakishorm" target="_blank">
@@ -411,6 +446,44 @@ If Laya helps your research or products, consider supporting independent researc
 
 ---
 
+## Relationship to upstream
+
+This repository tracks [NandhaKishorM/laya](https://github.com/NandhaKishorM/laya). The
+intent is to stay close to upstream and to carry local changes on top of it, not to diverge.
+
+**What is ours**
+
+* Builds and releases, published under `Gelhaus-Solutions/laya` (GitHub Releases, not PyPI).
+* Any fix or feature that lands here before, or instead of, upstream.
+
+**What stays upstream's**
+
+* The model checkpoints. `laya.load()` still pulls `convaiinnovations/laya` and its siblings
+  from the Hugging Face Hub; this fork does not host or mirror weights.
+* Copyright and original authorship, recorded in [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE).
+
+**Pulling upstream changes in**
+
+```bash
+git remote add upstream https://github.com/NandhaKishorM/laya.git   # once
+git fetch upstream
+git merge upstream/main          # or: git rebase upstream/main
+```
+
+Conflicts are expected in exactly the places this fork rewrote: `README.md` (badges,
+installation, this section), `pyproject.toml` and `setup.py` (maintainer and URLs),
+`.github/workflows/release.yml` (upstream publishes to PyPI, this fork does not), plus
+`NOTICE`, which upstream does not carry. Resolve those in the fork's favour.
+
+**Sending a change back**
+
+Branch from a clean `upstream/main`, not from this fork's `main`, so the pull request does
+not carry the fork-identity commits with it.
+
+---
+
 ## License
 
-Apache 2.0. Developed by Convai Innovations.
+Apache 2.0, unchanged from upstream. Originally developed by Convai Innovations; see
+[`LICENSE`](LICENSE) for the full text and [`NOTICE`](NOTICE) for attribution. Changes made
+in this fork are released under the same license.

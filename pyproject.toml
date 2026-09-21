@@ -9,8 +9,13 @@ description = "Fast, non-autoregressive System 1 decision engine with calibrated
 readme = "README.md"
 requires-python = ">=3.8"
 license = { text = "Apache-2.0" }
+# Upstream authorship is preserved: this is a fork of NandhaKishorM/laya, not a
+# new work. Maintainers are who you raise an issue with about THIS fork.
 authors = [
     { name = "Convai Innovations" }
+]
+maintainers = [
+    { name = "Gelhaus Solutions" }
 ]
 keywords = ["decision-model", "rlcd", "calibration", "system-one", "routing", "guardrails", "moderation", "triage"]
 classifiers = [
@@ -34,5 +39,11 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://huggingface.co/convaiinnovations/laya"
+Homepage = "https://github.com/Gelhaus-Solutions/laya"
+Repository = "https://github.com/Gelhaus-Solutions/laya"
+Issues = "https://github.com/Gelhaus-Solutions/laya/issues"
+Releases = "https://github.com/Gelhaus-Solutions/laya/releases"
+Upstream = "https://github.com/NandhaKishorM/laya"
+# The model weights stay upstream's; this fork ships code, not checkpoints.
+Model = "https://huggingface.co/convaiinnovations/laya"
 Demo = "https://huggingface.co/spaces/convaiinnovations/laya-demo"

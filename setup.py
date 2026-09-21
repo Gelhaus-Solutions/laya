@@ -7,6 +7,8 @@ setup(
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     author="Convai Innovations",
+    maintainer="Gelhaus Solutions",
+    url="https://github.com/Gelhaus-Solutions/laya",
     license="Apache-2.0",
     packages=find_packages(),
     python_requires=">=3.8",

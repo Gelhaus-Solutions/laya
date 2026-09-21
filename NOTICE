@@ -1,0 +1,16 @@
+Laya
+Copyright (c) Convai Innovations
+
+This product includes software developed by Convai Innovations
+(https://github.com/NandhaKishorM/laya), licensed under the Apache License,
+Version 2.0. A copy of the License is in the LICENSE file at the root of this
+repository.
+
+This repository is a fork maintained by Gelhaus Solutions
+(https://github.com/Gelhaus-Solutions/laya). Modifications made in this fork
+are likewise licensed under the Apache License, Version 2.0.
+
+The model checkpoints this package loads are published by Convai Innovations on
+the Hugging Face Hub (convaiinnovations/laya, convaiinnovations/laya-multilingual,
+convaiinnovations/laya-typed-decisions) and are not redistributed here. Their own
+terms apply.
